@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<button onclick="myFunction()">Average value rate</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+//initial rate for 6 days AUD to USD
+// get histrory rates from api
+var rate = [ 0.78, 0.72, 0.79, 0.71, 0.72, 0.6 ]
+
+var remainout = new Array();
+var remain
+
+//for loop to get the arrary of the remainder
+for (remain = 0; remain<5; remain++){
+       dec = rate[remain]-rate[remain+1]
+       remainout.push(dec)}
+       
+var declines = new Array();
+for (remain = 0; remain<5; remain++){
+       if (remainout[remain] >0) {
+       declines.push(remainout[remain])
+       }
+}
+
+// need to do something with it dropped d1 d2 and d3, current can only caculate d1 d2 drop
+var sum = declines.reduce((a, b) => a + b, 0)
+var len = declines.length
+var avg = sum / len
+var avg = avg.toFixed(4)
+//get current rate
+var today = rate[rate.length - 2] - rate[rate.length - 1];
+if (avg < today) {
+        // simulate text or bots api
+         document.getElementById("demo").innerHTML = today;
+ }
+ 
+// store user data with form
+//and send to mongo as json
+//need something to call this every 8hr and with every user's data
+
+}
+</script>
+
+</body>
+</html>
